@@ -21,6 +21,9 @@ import analogio
 import time
 from digitalio import DigitalInOut, Direction, Pull
 
+#  TODO:  Find a way to emulate the Python gpiozero's motor.forward() function so I don't have to use the time.sleep()
+#   function which ties up the script for x (linActuatorRunTime) number of seconds.
+
 
 # Define GPIO pins and directions for LED's
 led_manualOverride = DigitalInOut(board.GP16)
@@ -85,7 +88,7 @@ def actuator_close(duration):
         in2.value = True
 
 
-# Stop the door  NOTE: Not currently being used
+# Stop the door.
 def actuator_stop():
     in1.value = False
     in2.value = False
@@ -104,7 +107,7 @@ while True:
         actuator_close(linActuatorRunTime)  # Move the actuator forward for X number of seconds
         doorStatusOpen = False # Set door status to closed
     else:
-        actuator_stop()  # NOTE: I'm not currently using this button.
+        actuator_stop()
 
     if not button_light.value:
         lightRelay.value = True
