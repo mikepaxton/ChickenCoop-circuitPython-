@@ -17,8 +17,8 @@ the buttons.  Coop Panel Door Insert - Part 2.stl is printed using two colors.  
 The photocell holder allows you to insert a 5mm photocell into one end then attach wires and heatshrink them into place.
 The holder itself is long enough to go through 3/8" plywood of the chicken coop siding.  You can use small screws and some silicon to secure it on the inside of siding.
 
-I've included a couple photos to help visualize what the install looks like.  This is a working chicken coop so please
-excuse the cobwebs and mess.  You will probably notice three holes drilled into control panel door.  Those are from my previous setup which was using a Raspberry Pi 3B.  I plan on 3d printing a couple of wooden inserts to plug those holes.
+I've included a couple photos to help visualize what the install looks like.  This is a working chicken coop so please excuse the cobwebs and mess.  You will probably notice three holes drilled into control panel door.
+Those are from my previous setup which was using a Raspberry Pi 3B.  I plan on 3d printing a couple of wooden inserts to plug those holes.
 The previous system worked great but I had issues in the dead of winter.  The 100W solar panel couldn't keep the 12v deep cycle battery charged enough to run the Raspberry Pi, just not enough sunlight in the winter.
 You can find my previous setup on my github page under StarClucks. It was written for the Raspberry Pi using Python 3.
 
