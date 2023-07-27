@@ -48,9 +48,9 @@ You will also see some speaker wire coiled up on the left side.  When I was runn
               1 GPIO wire inside panel
 ``
   Total number of wires running from inside panel to panel door: 6  -  5 GPIO wires and 1 ground wire
-  I'm using a length of CAT 5 Cable for the 6 strands of wire.  Might make for a clean install from inside panel to door.
+  I'm using a length of CAT 6 Cable for the 6 strands of wire.  Makes for a clean install inside panel to door.
 
-Button function/color/Button Type/Wire Color/Physical Pin #
+Button function/Button color/Button Type/Wire Color/Physical Pin #
 
 Open  -  Green  -  momentary  -  Green Wire  -  #4
 Close  -  Green  -  momentary  -  Green White Wire -  #5
