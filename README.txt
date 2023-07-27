@@ -19,8 +19,14 @@ The holder itself is long enough to go through 3/8" plywood of the chicken coop 
 
 I've included a couple photos to help visualize what the install looks like.  This is a working chicken coop so please excuse the cobwebs and mess.  You will probably notice three holes drilled into control panel door.
 Those are from my previous setup which was using a Raspberry Pi 3B.  I plan on 3d printing a couple of wooden inserts to plug those holes.
-The previous system worked great but I had issues in the dead of winter.  The 100W solar panel couldn't keep the 12v deep cycle battery charged enough to run the Raspberry Pi, just not enough sunlight in the winter.
-You can find my previous setup on my github page under StarClucks. It was written for the Raspberry Pi using Python 3.
+The previous system worked great, but I had issues in the dead of winter.  The 100W solar panel couldn't keep the 12v deep cycle battery charged enough to run the Raspberry Pi, just not enough sunlight in the winter.
+You can find my previous setup on my GitHub page under StarClucks. It was written for the Raspberry Pi using Python 3.
+
+I'm using a 12v to 5 volt DC converter to power the Raspberry Pico directly off of the battery.  I'm bypassing the solar controllers output connectors. I've had issues in the past using the outputs includding the USB ports.
+To the right of the Pico you will see a red and yellow wire.  This is the photocell holder attached to it.
+You will also see some speaker wire coiled up on the left side.  When I was running with a Raspberry Pi 3b I had Airplay installed on it and could play music in the backyard through the speakers attached to the chicken coop.
+
+
 
  Current wiring to panel door.
  Buttons - 4: Manual Override, Light switch, open button and close button.
