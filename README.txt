@@ -1,4 +1,3 @@
-README
 
 The purpose of this script is to control the chicken coop door and light using a Raspberry Pico and CircuitPython.
 I'm using a L298N H-Bridge motor driver to control a Linear Actuator which opens and closes the coop door.
@@ -10,7 +9,14 @@ Opens at daylight hours and closes and dark (photo sensor).
 Can press the open button to open the door at any time.  Door should remain open.
 Can press the close button to keep the door open at any time.  Door should remain closed
 Do I need a manual override to keep door in a certain position.
-    Manual Override of the photo sensor.
+Manual Override of the photo sensor.
+
+I've included my 3D files for both the 5mm photo cell and control panel.
+The control panel is printed in two part for easy printing.  They are simply attached by inserting and securing
+the buttons.
+The photocell holder allows you to insert a 5mm photocell into one end then attach wires and heatshrink them into place.
+The holder itself is long enough to go through 3/8" plywood of the chicken coop siding.  You can use small screws and
+some silicon to secure it on the inside of siding.
 
  Current wiring to panel door.
  Buttons - 4: Manual Override, Light switch, open button and close button.
@@ -32,7 +38,7 @@ Do I need a manual override to keep door in a certain position.
               1 GPIO wire inside panel
 ``
   Total number of wires running from inside panel to panel door: 6  -  5 GPIO wires and 1 ground wire
-  Lets use a section of CAT 5 Cable.  Might make for a clean install from inside panel to door.
+  I'm using a length of CAT 5 Cable for the 6 strands of wire.  Might make for a clean install from inside panel to door.
 
 Button function/color/Button Type/Wire Color/Physical Pin #
 
