@@ -16,14 +16,16 @@ Added an LED to indicate if Manual Override Mode is in effect.
 A relay has been added along with a constant on switch which turns on a light inside the chicken coop.
 NOTE:  The relay I'm using is triggered in a High state.
 """
+
+#  TODO:  Find a way to emulate the Python gpiozero's motor.forward() function so I don't have to use the time.sleep()
+#   function which ties up the script for x (linActuatorRunTime) number of seconds.
+#  TODO: Implement a hardware reset button incase the Pico ever locks up.  Pin # 30 (run) tied to ground via a
+#   momentary button will do the trick.
+
 import board
 import analogio
 import time
 from digitalio import DigitalInOut, Direction, Pull
-
-#  TODO:  Find a way to emulate the Python gpiozero's motor.forward() function so I don't have to use the time.sleep()
-#   function which ties up the script for x (linActuatorRunTime) number of seconds.
-
 
 # Define GPIO pins and directions for LED's
 led_manualOverride = DigitalInOut(board.GP16)
