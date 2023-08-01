@@ -118,12 +118,16 @@ while True:
     # Check if the "Open" button was pressed
     if not button_open.value:  # Button is active LOW due to pull-up resistor
         print("Opening")
+        time.sleep(1)
         actuator_open(actuator_run_time)
+        door_open = True
 
     # Check if the "Close" button is pressed
     if not button_close.value:  # Button is active LOW due to pull-up resistor
         print("Closing")
+        time.sleep(1)
         actuator_close(actuator_run_time)
+        door_open = False
 
     # Check if the "Emergency Stop" button is pressed
     if not button_eStop.value:  # Button is active LOW due to pull-up resistor
@@ -132,7 +136,7 @@ while True:
     # End of open, close and e-stop code section
 
     # Beginning of actuator running check section of code
-    # If the actuator is running and current time is greater to the calculated stop time then execute code
+    # If the actuator is running and current time is greater than the calculated stop time then execute code
     if actuator_running and time.monotonic() > actuator_stop_time:
         print("actuator Stopped")
         actuator_stop()

@@ -41,27 +41,22 @@ actuator_run_time = 15  # Time in seconds the linear actuator needs for opening 
 
 def actuator_open(duration):
     global actuator_running, actuator_stop_time
-
-    actuator_running = True
     actuator_stop_time = time.monotonic() + duration
-
+    actuator_running = True
     in1.value = True
     in2.value = False
 
 
 def actuator_close(duration):
     global actuator_running, actuator_stop_time
-
-    actuator_running = True
     actuator_stop_time = time.monotonic() + duration
-
+    actuator_running = True
     in1.value = False
     in2.value = True
 
 
 def actuator_stop():
     global actuator_running
-
     in1.value = False
     in2.value = False
     actuator_running = False
@@ -88,7 +83,7 @@ while True:
         print("Stop")
         actuator_stop()
 
-    # Check if the actuator is running and if it's time to stop
+    # If the actuator is running and current time is greater or equal to the calculated stop time then execute code
     if actuator_running and time.monotonic() >= actuator_stop_time:
         actuator_running = False
         print("actuator Stopped")
