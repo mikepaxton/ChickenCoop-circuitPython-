@@ -1,4 +1,3 @@
-
 The purpose of this script is to control the chicken coop door and light using a Raspberry Pico and CircuitPython.
 I'm using a L298N H-Bridge motor driver to control a Linear Actuator which opens and closes the coop door.
 I'm using a Photocell Resistor to detect light levels outside the coop which then triggers the opening and closing of the door.
@@ -26,7 +25,8 @@ I'm using a 12v to 5 volt DC converter to power the Raspberry Pico directly off 
 To the right of the Pico you will see a red and yellow wire.  This is the photocell holder attached to it.
 You will also see some speaker wire coiled up on the left side.  When I was running with a Raspberry Pi 3b I had Airplay installed on it and could play music in the backyard through the speakers attached to the chicken coop.
 
-
+#  TODO: Implement a hardware reset button incase the Pico ever locks up.  Pin # 30 (run) tied to ground via a momentary button will do the trick.
+NOTE: I've implemented an E-Stop (emergency stop) button in code but have not wired it up in my panel.  It's not pictured or mentioned here.
 
  Current wiring to panel door.
  Buttons - 4: Manual Override, Light switch, open button and close button.
@@ -56,6 +56,7 @@ Open  -  Green  -  momentary  -  Green Wire  -  #4
 Close  -  Green  -  momentary  -  Green White Wire -  #5
 Manual Override  -  Red  -  Constant  -  Orange Wire  -  #9
 Lights  -  White  -  Constant  -  Orange White Wire  -  #6
+
 
 LED  -  Blue Wire  - #21
 Ground - Brown Wire  - #3
