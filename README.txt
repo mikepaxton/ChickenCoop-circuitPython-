@@ -1,13 +1,12 @@
 The purpose of this script is to control the chicken coop door and light using a Raspberry Pico and CircuitPython.
-I'm using a L298N H-Bridge motor driver to control a Linear Actuator which opens and closes the coop door.
-I'm using a Photocell Resistor to detect light levels outside the coop which then triggers the opening and closing of the door.
+I'm using a L298N H-Bridge motor driver to control a linear actuator which opens and closes the coop door.
+I'm using a photocell resistor to detect light levels outside the coop which then triggers the opening and closing of the door.
 
 How the chicken door should work:
-Opens at daylight hours and closes and dark (photo sensor).
-Can press the open button to open the door at any time.  Door should remain open.
-Can press the close button to keep the door open at any time.  Door should remain closed
-Do I need a manual override to keep door in a certain position.
-Manual Override of the photo sensor.
+Opens at daylight hours and closes and dark (photocell resistor).
+If needed a way to manually open and close the coop door.
+Install a manual override button (constant on switch)
+When in manual mode can press open or close to keep the door in the desired state.
 
 I've included my 3D files for both the 5mm photo cell and control panel.
 The control panel is printed in two part for easy printing.  They are simply attached by inserting and securing
@@ -24,6 +23,28 @@ You can find my previous setup on my GitHub page under StarClucks. It was writte
 I'm using a 12v to 5 volt DC converter to power the Raspberry Pico directly off of the battery.  I'm bypassing the solar controllers output connectors. I've had issues in the past using the outputs includding the USB ports.
 To the right of the Pico you will see a red and yellow wire.  This is the photocell holder attached to it.
 You will also see some speaker wire coiled up on the left side.  When I was running with a Raspberry Pi 3b I had Airplay installed on it and could play music in the backyard through the speakers attached to the chicken coop.
+
+Basic Hardware List for Pico:
+1 - Raspberry Pico
+1 - L298 H-Bridge motor controller
+1 - Single channel relay (Coop light relay)
+1 - 12v to 5v  voltage regulator
+2 - Momentary buttons (Open/Close buttons)
+2 - Constant On/Off button (Manual Override and Coop Light)
+2 - 100 ohm resistors (LED and photocell)
+1 - Photocell resistor
+2 - 20 pin single row headers (for mounting Pico to prototype board)  Makes for easley removing Pico and plugging it into my computer for upgrades of software.
+1 - Prototype board solderable w/connected traces to Pico headers
+5 - 3 pin terminal blocks
+1 - 12v linear actuator.  I used a 12" stroke with a run speed of 20mm/s.
+Various color 28 gauge wire for connecting small electronics hardware together. I used a small section of cat6 ethernet cable to run from main board to the door panel for buttons.
+Heavier gauge wire to run from h-bridge to actuator.
+
+Basic Hardware List for Solar Setup:
+1 - 12v Deep cycle battery
+1 - 20-30amp solar charger controller
+1 - 100w solar panel
+Enough heavier gauge wire to from solar panel to controller to battery.
 
 #  TODO: Implement a hardware reset button incase the Pico ever locks up.  Pin # 30 (run) tied to ground via a momentary button will do the trick.
 NOTE: I've implemented an E-Stop (emergency stop) button in code but have not wired it up in my panel.  It's not pictured or mentioned here.

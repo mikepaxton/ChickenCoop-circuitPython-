@@ -140,7 +140,6 @@ while True:
     if actuator_running and time.monotonic() > actuator_stop_time:
         print("actuator Stopped")
         actuator_stop()
-        actuator_running = False
     # End of actuator running check code section
 
     # Beginning of coop light relay code section
@@ -153,23 +152,23 @@ while True:
     # End of coop light relay code section
 
     # Beginning of Manual override and photocell value checking code section.
-    if not button_manualOverride.value:  # Button is active LOW due to pull-up resistor
-        led_manualOverride.value = True  # In override mode so turn LED on.
+    if not button_manualOverride.value:  # Check if manual override button is pressed (active LOW due to pull-up resistor)
+        led_manualOverride.value = True  # Button is pressed enable manual override mode and turn on LED indicator
         print("In Manual Override")
     else:
-        # Manual Override button not pressed, let the photo sensor check for light conditions.
+        # Manual override button not pressed, get value from photocell
         print(photocell.value)
         led_manualOverride.value = False  # Turn off manual override LED
-        if door_open:  # Check door status
-            if photocell.value < evening_threshold:  # Door is open, check photocell to see if dark enough to close door
-                door_open = False  # Set door status to closed
-                actuator_close(actuator_run_time)  # Photocell value is bellow threshold, close door.
 
-        # if we find the photocell has light we open the door.
-        if not door_open:
-            if photocell.value > day_threshold:  # Door is closed, check photocell to see if light enough to open door
-                door_open = True  # Set door status to open.
-                actuator_open(actuator_run_time)  # Photocell value is above threshold, open door.
+        if door_open:  # Check if the door is open
+            if photocell.value < evening_threshold:  # Check if it's dark enough to close the door
+                door_open = False  # Set door status to closed
+                actuator_close(actuator_run_time)  # Close the door as it's dark enough
+
+        else:  # Door is closed
+            if photocell.value > day_threshold:  # Check if it's light enough to open the door
+                door_open = True  # Set door status to open
+                actuator_open(actuator_run_time)  # Open the door as it's light enough
 
     # End of manual override and photocell value checking code section
 
