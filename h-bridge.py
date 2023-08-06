@@ -1,5 +1,5 @@
 """"
-This is used for testing now h-bridge and linear actuator function with various code.
+This is used for testing how h-bridge and linear actuator function with various code.
 """
 
 import board
