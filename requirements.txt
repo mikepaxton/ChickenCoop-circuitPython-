@@ -1,0 +1,1 @@
+circuitpython-stubs==8.2.2
