@@ -1,40 +1,56 @@
-# Chicken Coop Controller
+# Coop Controller Software
+
+The Chicken Coop Controller software is designed to automate the operation of a chicken coop door and interior light 
+using a Raspberry Pico and CircuitPython. It offers a combination of automatic control based on light levels outside 
+the coop, manual override capabilities, and a convenient interface for chicken coop management.
 
 ## Features:
-The purpose of this script is to control the chicken coop door and light using a Raspberry Pico and CircuitPython.
-I'm using a L298N H-Bridge motor driver to control a linear actuator which opens and closes the coop door.
-I'm using a photocell resistor to detect light levels outside the coop which then triggers the opening and closing of the door.
 
-## How the chicken door should work:
-Opens at daylight hours and closes and dark (photocell resistor).
-If needed a way to manually open and close the coop door.
-Install a manual override button (constant on switch)
-When in manual mode can press open or close to keep the door in the desired state.
+* Automatic Coop Door Operation: The software uses a Raspberry Pico and an L298N H-Bridge motor driver to control a 
+linear actuator that opens and closes the chicken coop door based on the ambient light levels. This is achieved 
+using a photocell resistor to detect the outdoor light conditions.
+* Manual Override: In situations where manual intervention is required, the system provides a Manual Override button. 
+This button allows you to manually open or close the coop door and lock it in the desired state.
+* Interior Coop Light Control: The software also includes functionality to control an interior light within the 
+chicken coop. A relay is used to turn the light on or off, and this can be manually activated using a dedicated button.
+* Emergency Stop: While the Emergency Stop (E-Stop) functionality is implemented in the code, it's important to note 
+that it may not be physically wired to the control panel in your setup. The E-Stop button is designed to halt all 
+operations in case of an emergency.
+
+## How the Chicken Coop Door Works:
+
+* The coop door automatically opens during daylight hours and closes at night based on the readings from the photocell 
+resistor.
+* In manual mode, you can press the "Open" or "Close" button to control the coop door's position. The Manual Override 
+button and Constant On/Off button allow you to manually operate the door and interior light.
+
+## Installation:
+
+### Required Files on the Raspberry Pico:
+/main.py
+** Note: All necessary libraries are included in the CircuitPython.uf2 file, so there's no need to add libraries to 
+the /lib folder.
+
 
 ## 3D Printer Files:
-I've included my 3D printer .stl files for both the 5mm photo cell and control panel.
-The control panel is printed in two part for easy printing.  They are simply attached by inserting and securing
-the buttons.  Coop Panel Door Insert - Part 2.stl is printed using two colors.  I printed the lettering in white as 
-you can see in the photos.
 
-The photocell holder allows you to insert a 5mm photocell into one end then attach wires and heatshrink them into place.
-The holder itself is long enough to go through 3/8" plywood of the chicken coop siding.  You can use small screws 
-and some silicon to secure it on the inside of siding.
+Included in this repository are 3D printer .stl files for the 5mm photocell holder and the control panel. The 
+control panel consists of two parts for ease of printing, and they can be securely attached by inserting and 
+securing the buttons. The "Coop Panel Door Insert - Part 2.stl" is printed using two colors, with the lettering 
+typically printed in white.
+
+The photocell holder is designed to accommodate a 5mm photocell, allowing you to attach wires and secure them in 
+place with heat shrink tubing. It's long enough to pass through 3/8" plywood on the chicken coop's siding, and you 
+can use small screws and silicone to secure it from the inside.
 
 ## Additional Info:
-I've included a couple photos to help visualize what the install looks like.  This is a working chicken coop so 
-please excuse the cobwebs and mess.  You will probably notice three holes drilled into control panel door.
-Those are from my previous setup which was using a Raspberry Pi 3B.  I plan on 3d printing a couple of wooden 
-inserts to plug those holes.
-The previous system worked great, but I had issues in the dead of winter.  The 100W solar panel couldn't keep the 
-12v deep cycle battery charged enough to run the Raspberry Pi, just not enough sunlight in the winter.
-You can find my previous setup on my GitHub page under StarClucks. It was written for the Raspberry Pi using Python 3.
+The provided photos in this repository offer a visual representation of the installation process. Please note that 
+the coop in the images is a working chicken coop, so some mess and cobwebs are expected.
 
-I'm using a 12v to 5 volt DC converter to power the Raspberry Pico directly off of the battery.  I'm bypassing the 
-solar controllers output connectors. I've had issues in the past using the outputs including the USB ports.
-To the right of the Pico you will see a red and yellow wire.  This is the photocell holder attached to it.
-You will also see some speaker wire coiled up on the left side.  When I was running with a Raspberry Pi 3b I had 
-Airplay installed on it and could play music in the backyard through the speakers attached to the chicken coop.
+The setup includes a 12V to 5V DC converter to power the Raspberry Pico directly from the battery, bypassing the 
+solar controller's output connectors. In the images, you'll also see a red and yellow wire connected to the 
+photocell holder, along with coiled speaker wire. These were used for audio playback in the backyard when a 
+Raspberry Pi 3B was previously installed.
 
 ## Basic Hardware List for Pico:
 * 1 - Raspberry Pico
@@ -75,39 +91,39 @@ Enough heavier gauge wire to run from solar panel to controller to battery.
 
 
 ### Current wiring inside panel itself:
-* Relay - 1  
+* Relay - 1 
 * 1 Ground wire will not be in panel so has its own ground or tied to H-Bridge. 
 * 1 3.3v positive wire 
-* 1 GPIO wire 
+* 1 GPIO wire - GPIO #17
 
 
 * H-Bridge - 1 
 * 1 Ground wire will not be in panel so has its own ground or tied to Relay. 
 * 1 12v wire running tied to 12v circuit. 
 * 2 wires running to linear actuator 
-* 2 wires running to Pico GPIO 
+* 2 wires running to Pico GPIO - GPIO #0 and #1
 
 
 * Photocell - 1
 * 3.3v wire inside panel 
 * 1 ground wire inside panel 
-* 1 GPIO wire inside panel
+* 1 GPIO wire inside panel - GPIO A0
 
 
 Total number of wires running from inside panel to panel door: 6  -  5 GPIO wires and 1 ground wire
 
 I'm using a length of CAT 6 Cable for the 6 strands of wire.  Makes for a clean install inside panel to door.
 
-* Button function/Button color/Button Type/Wire Color/Physical Pin #
+* Button function/Button color/Button Type/Wire Color/GPIO Pin #
 
-* Open  -  Green  -  momentary  -  Green Wire  -  #4
-* Close  -  Green  -  momentary  -  Green White Wire -  #5
-* Manual Override  -  Red  -  Constant  -  Orange Wire  -  #9
-* Lights  -  White  -  Constant  -  Orange White Wire  -  #6
+* Open  -  Green  -  momentary  -  Green Wire  -  #2
+* Close  -  Green  -  momentary  -  Green White Wire -  #3
+* Manual Override  -  Red  -  Constant  -  Orange Wire  -  #6
+* Lights  -  White  -  Constant  -  Orange White Wire  -  #4
 
-
-* LED  -  Blue Wire  - #21
-* Ground - Brown Wire  - #3
+### Additional Wiring:
+* LED  -  Blue Wire  - #16
+* Ground - Brown Wire
 
 Brown White & Blue White Wire not used.
 

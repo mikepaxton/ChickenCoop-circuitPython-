@@ -81,28 +81,83 @@ evening_threshold = 6000
 day_threshold = 20000
 
 
-#  Open door routine
 def actuator_open(duration):
+    """
+    Open the chicken coop door by controlling the linear actuator.
+
+    Parameters:
+    - duration (float): The duration in seconds for which the actuator should run to open the door.
+
+    This function sets the linear actuator to open the chicken coop door for the specified duration.
+    It updates the global variables 'actuator_running' and 'actuator_stop_time' to track the
+    actuator's status and stop time. Additionally, it controls the motor driver to open the door.
+
+    Note:
+    - 'actuator_running' is used to monitor the state of the actuator operation.
+    - 'actuator_stop_time' is the time at which the actuator should automatically stop.
+
+    """
     global actuator_running, actuator_stop_time
+
+    # Calculate the time at which the actuator should stop
     actuator_stop_time = time.monotonic() + duration
+
+    # Set 'actuator_running' to True to indicate that the actuator is in operation
     actuator_running = True
+
+    # Control the motor driver to open the door
     in1.value = True
     in2.value = False
 
 
-# Close door routine
 def actuator_close(duration):
+    """
+    Close the chicken coop door by controlling the linear actuator.
+
+    Parameters:
+    - duration (float): The duration in seconds for which the actuator should run to close the door.
+
+    This function sets the linear actuator to close the chicken coop door for the specified duration.
+    It updates the global variables 'actuator_running' and 'actuator_stop_time' to track the
+    actuator's status and stop time. Additionally, it controls the motor driver to close the door.
+
+    Note:
+    - 'actuator_running' is used to monitor the state of the actuator operation.
+    - 'actuator_stop_time' is the time at which the actuator should automatically stop.
+
+    """
     global actuator_running, actuator_stop_time
+
+    # Calculate the time at which the actuator should stop
     actuator_stop_time = time.monotonic() + duration
+
+    # Set 'actuator_running' to True to indicate that the actuator is in operation
     actuator_running = True
+
+    # Control the motor driver to close the door
     in1.value = False
     in2.value = True
 
 
-# Stop the door.
 def actuator_stop():
+    """
+    Stop the operation of the chicken coop door's linear actuator.
+
+    This function stops the operation of the linear actuator responsible for opening and closing
+    the chicken coop door. It sets the global variable 'actuator_running' to False to indicate
+    that the actuator is no longer in operation. Additionally, it ensures that the motor driver
+    is set to a neutral state, causing the door to stop moving.
+
+    Note:
+    - 'actuator_running' is used to monitor the state of the actuator operation.
+
+    """
     global actuator_running
+
+    # Set 'actuator_running' to False which indicates that the actuator is no longer in operation
     actuator_running = False
+
+    # Ensure that the motor driver is set to a neutral state, stopping the door from moving
     in1.value = False
     in2.value = False
 
