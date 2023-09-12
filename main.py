@@ -169,6 +169,36 @@ door_open = True
 
 
 while True:
+    """
+    Main loop for controlling the chicken coop door and light.
+
+    This loop continuously monitors various buttons, including the "Open," "Close," "Emergency Stop," "Light," 
+    and "Manual Override" buttons. Depending on button presses and light conditions, it controls the operation 
+    of the chicken coop door and interior light.
+
+    The loop consists of several sections:
+
+    1. Button Press Handling:
+       - Checks if the "Open," "Close," and "Emergency Stop" buttons are pressed and executes corresponding actions.
+
+    2. Actuator Running Check:
+       - Monitors the state of the actuator (door movement) and stops it when the set duration is reached.
+
+    3. Coop Light Relay Control:
+       - Controls the interior coop light based on the status of the "Light" button.
+
+    4. Manual Override and Photocell Check:
+       - Checks if the "Manual Override" button is pressed. If so, it enables manual override mode.
+       - If manual override is not active, it reads the photocell value to determine light conditions.
+       - Based on light conditions and the door's current state, it decides whether to open or close the door.
+
+    5. Debug Output:
+       - Provides debugging information, including door status, to the REPL.
+
+    6. Delay:
+       - Introduces a small delay for button debouncing and smoother button handling.
+
+    """
     # Beginning of open, close and e-stop button code section
     # Check if the "Open" button was pressed
     if not button_open.value:  # Button is active LOW due to pull-up resistor
